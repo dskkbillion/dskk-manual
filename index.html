@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>多少看看 · 交互手册</title>
+  <title>多少看看 · 交互操作手册</title>
   <style>
     :root {
       --brand: #1e6fe8;
       --brand-light: #e8f0fd;
-      --sidebar-w: 240px;
+      --sidebar-w: 248px;
       --text: #1a1a2e;
       --muted: #6b7280;
       --border: #e5e7eb;
       --bg: #f9fafb;
       --white: #ffffff;
       --radius: 12px;
-      --shadow: 0 2px 12px rgba(0,0,0,.07);
+      --shadow: 0 2px 12px rgba(0,0,0,.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif; color: var(--text); background: var(--bg); }
@@ -60,7 +60,7 @@
     .hero .badge { display: inline-block; background: rgba(255,255,255,.2); border-radius: 20px; padding: 4px 12px; font-size: 12px; margin-bottom: 16px; }
     .hero h1 { font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
     .hero p { font-size: 15px; opacity: .85; max-width: 520px; line-height: 1.6; }
-    .hero-meta { margin-top: 24px; display: flex; gap: 24px; }
+    .hero-meta { margin-top: 24px; display: flex; gap: 24px; flex-wrap: wrap; }
     .hero-meta span { font-size: 13px; opacity: .75; display: flex; align-items: center; gap: 6px; }
 
     /* Section */
@@ -72,624 +72,623 @@
     .section-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
     .section-desc { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 600px; }
 
-    /* Feature cards (screenshot + description side by side) */
+    /* Feature */
     .feature { display: flex; gap: 40px; margin-bottom: 48px; align-items: flex-start; }
     .feature:last-child { margin-bottom: 0; }
     .feature.reverse { flex-direction: row-reverse; }
-    .feature-screenshot { flex-shrink: 0; width: 220px; }
+    .feature-screenshot { flex-shrink: 0; width: 200px; }
     .feature-screenshot img {
-      width: 220px; border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.06);
+      width: 100%; border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.14), 0 0 0 1px rgba(0,0,0,.06);
       display: block;
     }
-    .feature-screenshot .caption { font-size: 11px; color: var(--muted); text-align: center; margin-top: 8px; }
-    .feature-body { flex: 1; padding-top: 8px; }
-    .feature-tag { display: inline-block; background: var(--brand-light); color: var(--brand); font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-bottom: 10px; }
-    .feature-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-    .feature-text { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
-    .feature-steps { padding-left: 0; list-style: none; }
-    .feature-steps li {
-      display: flex; gap: 10px; align-items: flex-start;
-      font-size: 13px; color: var(--text); line-height: 1.6; margin-bottom: 8px;
+    .feature-body { flex: 1; min-width: 0; padding-top: 8px; }
+    .feature-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+    .steps { list-style: none; padding: 0; }
+    .steps li {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; line-height: 1.5;
     }
-    .feature-steps li .step-num {
+    .steps li:last-child { border-bottom: none; }
+    .step-num {
       flex-shrink: 0; width: 22px; height: 22px; background: var(--brand); color: #fff;
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       font-size: 11px; font-weight: 700; margin-top: 1px;
     }
-    .highlight-box {
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .tag {
+      padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+      background: var(--brand-light); color: var(--brand);
+    }
+    .tag.green { background: #d1fae5; color: #065f46; }
+    .tag.orange { background: #fef3c7; color: #92400e; }
+    .tag.purple { background: #ede9fe; color: #5b21b6; }
+    .highlight {
       background: var(--brand-light); border-left: 3px solid var(--brand);
       border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px;
-      line-height: 1.6; margin-top: 14px; color: var(--text);
-    }
-    .highlight-box strong { color: var(--brand); }
-
-    /* Screenshot gallery (multi-screenshot row) */
-    .gallery { display: flex; gap: 20px; flex-wrap: wrap; }
-    .gallery-item { text-align: center; }
-    .gallery-item img { width: 160px; border-radius: 16px; box-shadow: var(--shadow), 0 0 0 1px rgba(0,0,0,.06); display: block; }
-    .gallery-item .cap { font-size: 11px; color: var(--muted); margin-top: 8px; }
-
-    /* Tag pill row */
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; background: #f3f4f6; color: #374151; }
-    .tag.blue { background: var(--brand-light); color: var(--brand); }
-    .tag.green { background: #d1fae5; color: #065f46; }
-    .tag.orange { background: #fff7ed; color: #c2410c; }
-
-    /* Scrollspy helper */
-    .anchor { scroll-margin-top: 24px; }
-
-    /* Footer */
-    footer {
-      background: var(--white); border-top: 1px solid var(--border);
-      padding: 32px 48px; font-size: 12px; color: var(--muted);
-      margin-left: 0;
+      color: #1e40af; margin-top: 16px; line-height: 1.6;
     }
 
-    /* Mobile */
-    @media (max-width: 768px) {
+    /* Multi screenshot grid */
+    .screenshots-grid { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+    .screenshots-grid .feature-screenshot { width: 160px; }
+    .screenshots-grid .feature-screenshot .cap { font-size: 11px; color: var(--muted); text-align: center; margin-top: 8px; }
+
+    @media (max-width: 900px) {
       #sidebar { display: none; }
       #main { margin-left: 0; }
-      .hero { padding: 32px 20px; }
-      .section { padding: 32px 20px; }
+      .hero { padding: 32px 24px; }
+      .section { padding: 32px 24px; }
       .feature { flex-direction: column !important; }
-      .feature-screenshot { width: 100%; }
-      .feature-screenshot img { width: 180px; margin: 0 auto; }
-      footer { padding: 24px 20px; margin-left: 0; }
+      .feature-screenshot { width: 180px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     SIDEBAR
-══════════════════════════════════════════ -->
+<!-- ══ SIDEBAR ══ -->
 <nav id="sidebar">
   <div class="sidebar-logo">
-    <div class="logo-icon">多少</div>
+    <div class="logo-icon">多</div>
     <div>
       <div class="logo-text">多少看看</div>
-      <div class="logo-sub">交互手册 v1.0</div>
+      <div class="logo-sub">交互操作手册 v2.0</div>
     </div>
   </div>
 
-  <div class="sidebar-section">概览</div>
-  <a class="sidebar-item active" href="#overview" onclick="setActive(this)"><span class="icon">🏠</span> 产品概览</a>
+  <div class="sidebar-section">买家功能</div>
+  <a class="sidebar-item" href="#browse"><span class="icon">🏠</span>首页浏览</a>
+  <a class="sidebar-item" href="#search"><span class="icon">🔍</span>搜索服务</a>
+  <a class="sidebar-item" href="#product"><span class="icon">📦</span>商品详情</a>
+  <a class="sidebar-item" href="#chat"><span class="icon">💬</span>聊聊（买卖沟通）</a>
+  <a class="sidebar-item" href="#orders"><span class="icon">📋</span>我的订单</a>
+  <a class="sidebar-item" href="#favorites"><span class="icon">⭐</span>收藏夹</a>
+  <a class="sidebar-item" href="#wallet"><span class="icon">💰</span>我的钱包</a>
+  <a class="sidebar-item" href="#profile"><span class="icon">👤</span>个人主页</a>
+  <a class="sidebar-item" href="#notifications"><span class="icon">🔔</span>通知中心</a>
 
-  <div class="sidebar-section">核心功能</div>
-  <a class="sidebar-item" href="#browse" onclick="setActive(this)"><span class="icon">🛍️</span> 逛逛 · 服务广场</a>
-  <a class="sidebar-item" href="#product" onclick="setActive(this)"><span class="icon">📦</span> 服务详情页</a>
-  <a class="sidebar-item" href="#ai" onclick="setActive(this)"><span class="icon">🤖</span> AI 助手</a>
-  <a class="sidebar-item" href="#chat" onclick="setActive(this)"><span class="icon">💬</span> 聊聊 · 消息中心</a>
-  <a class="sidebar-item" href="#orders" onclick="setActive(this)"><span class="icon">📋</span> 我的订单</a>
-
-  <div class="sidebar-section">账户管理</div>
-  <a class="sidebar-item" href="#profile" onclick="setActive(this)"><span class="icon">👤</span> 个人主页</a>
-  <a class="sidebar-item" href="#favorites" onclick="setActive(this)"><span class="icon">⭐</span> 收藏</a>
-  <a class="sidebar-item" href="#wallet" onclick="setActive(this)"><span class="icon">💳</span> 钱包</a>
+  <div class="sidebar-section">AI 功能</div>
+  <a class="sidebar-item" href="#ai"><span class="icon">🤖</span>AI 助手</a>
 
   <div class="sidebar-section">卖家功能</div>
-  <a class="sidebar-item" href="#seller-home" onclick="setActive(this)"><span class="icon">🏪</span> 卖家主页</a>
-  <a class="sidebar-item" href="#seller-products" onclick="setActive(this)"><span class="icon">🗂️</span> 商品管理</a>
-  <a class="sidebar-item" href="#seller-tools" onclick="setActive(this)"><span class="icon">⚙️</span> 卖家工具</a>
-  <a class="sidebar-item" href="#seller-analytics" onclick="setActive(this)"><span class="icon">📊</span> 数据统计</a>
+  <a class="sidebar-item" href="#seller-home"><span class="icon">🏪</span>卖家主页</a>
+  <a class="sidebar-item" href="#seller-products"><span class="icon">🛍️</span>商品管理</a>
+  <a class="sidebar-item" href="#seller-analytics"><span class="icon">📊</span>数据统计</a>
+  <a class="sidebar-item" href="#seller-messages"><span class="icon">📨</span>卖家消息</a>
+  <a class="sidebar-item" href="#seller-tools"><span class="icon">⚙️</span>卖家工具</a>
 </nav>
 
-<!-- ══════════════════════════════════════════
-     MAIN CONTENT
-══════════════════════════════════════════ -->
-<main id="main">
+<!-- ══ MAIN ══ -->
+<div id="main">
 
   <!-- Hero -->
-  <div class="hero" id="overview">
-    <div class="badge">📱 产品交互手册 · 2026年5月</div>
-    <h1>多少看看<br>交互操作手册</h1>
-    <p>面向宣发人员、运营团队和新用户的完整功能说明。每个功能页面均附有真实截图和操作步骤，可直接用于教程制作、用户引导和 UI 质检。</p>
+  <div class="hero">
+    <div class="badge">📱 APP 交互手册</div>
+    <h1>多少看看<br>功能操作指南</h1>
+    <p>面向宣发、运营、新用户的完整功能说明。涵盖买家全流程、AI 助手、卖家管理台共 15 个功能模块，所有截图均来自 Staging 真实环境。</p>
     <div class="hero-meta">
-      <span>📲 连接 Zeabur 测试环境截图</span>
-      <span>📸 25 张真实截图</span>
-      <span>🔖 14 个功能模块</span>
+      <span>📅 2026-05-22 更新</span>
+      <span>📸 27 张实机截图</span>
+      <span>🧩 15 个功能模块</span>
+      <span>📱 iOS 端演示</span>
     </div>
   </div>
 
-  <!-- 产品概览 -->
-  <section class="section anchor" id="overview-desc">
+  <!-- ══ 1. 首页浏览 ══ -->
+  <div class="section" id="browse">
     <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 产品概览</div>
-      <h2 class="section-title">多少看看是什么？</h2>
-      <p class="section-desc">多少看看（DSKK）是一个面向国际化用户的「服务类电商」平台，连接买家与专业卖家，涵盖从咨询、下单、交付到评价的完整交易闭环，并内置 AI 助手提供智能决策支持。</p>
-    </div>
-    <div class="tags">
-      <span class="tag blue">买家端 · 浏览/下单/聊天</span>
-      <span class="tag blue">卖家端 · 发布/接单/收款</span>
-      <span class="tag green">AI 助手 · 智能推荐 &amp; 对话</span>
-      <span class="tag orange">多币种 · USD 结算 + 本地折算显示</span>
-    </div>
-    <div class="highlight-box" style="margin-top:20px">
-      <strong>底部导航（买家模式）：</strong> 看看（AI助手）· 逛逛（服务广场）· 聊聊（消息）· 我的（个人中心）<br>
-      <strong>底部导航（卖家模式）：</strong> 数据 · 商品 · 消息 · 我的
-    </div>
-  </section>
-
-  <!-- ── 逛逛 ── -->
-  <section class="section anchor" id="browse">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 01</div>
-      <h2 class="section-title">逛逛 · 服务广场</h2>
-      <p class="section-desc">APP 的主浏览入口，展示所有在售服务，支持搜索筛选，是买家发现服务的核心页面。</p>
+      <div class="section-label"><span class="dot"></span>买家 · 01</div>
+      <div class="section-title">首页浏览（逛逛）</div>
+      <div class="section-desc">APP 打开后的主界面，以瀑布流形式展示平台上的所有服务商品，是买家发现新服务的核心入口。</div>
     </div>
     <div class="feature">
       <div class="feature-screenshot">
-        <img src="images/04-browse-home.png" alt="逛逛首页" />
-        <div class="caption">逛逛 · 首页</div>
+        <img src="images/s02-browse-home.png" alt="首页浏览" />
       </div>
       <div class="feature-body">
-        <div class="feature-tag">买家功能</div>
-        <div class="feature-title">服务广场首页</div>
-        <div class="feature-text">以瀑布流形式展示所有服务卡片，每张卡片包含服务封面图、评分、标题和价格（USD + 本地折算），顶部 Banner 轮播精选服务。</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 进入 APP，点击底部「逛逛」标签</li>
-          <li><span class="step-num">2</span> 上下滑动浏览服务列表</li>
-          <li><span class="step-num">3</span> 点击服务卡片进入详情页</li>
-          <li><span class="step-num">4</span> 点击顶部搜索框进行关键词搜索</span></li>
-        </ul>
-        <div class="highlight-box">
-          <strong>价格双显示：</strong> 每张卡片同时显示 USD 定价和本地货币折算（如 ≈ ¥13.62），汇率每小时自动刷新，仅供参考，结算以 USD 为准。
-        </div>
-      </div>
-    </div>
-    <div class="feature reverse">
-      <div class="feature-screenshot">
-        <img src="images/22-search.png" alt="搜索页面" />
-        <div class="caption">搜索功能</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">搜索</div>
-        <div class="feature-title">服务搜索</div>
-        <div class="feature-text">点击顶部搜索框即可进入搜索模式，输入关键词快速定位目标服务。</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 在逛逛页点击顶部「搜索服务」输入框</li>
-          <li><span class="step-num">2</span> 输入关键词（如「装机」「设计」）</li>
-          <li><span class="step-num">3</span> 点击结果卡片进入服务详情</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 服务详情 ── -->
-  <section class="section anchor" id="product">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 02</div>
-      <h2 class="section-title">服务详情页</h2>
-      <p class="section-desc">展示服务的完整信息，包括套餐选择、卖家资质、买家需提供的材料，以及直接下单入口。</p>
-    </div>
-    <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/05-product-detail-top.png" alt="服务详情页" />
-        <div class="caption">服务详情 · 顶部</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">购买流程</div>
-        <div class="feature-title">服务套餐 &amp; 一键购买</div>
-        <div class="feature-text">服务通常提供多个价位套餐（如 Lite / Pro / Deep），买家可根据需求选择，点击「一键购买」直接下单并跳转支付。</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 浏览服务封面图和卖家信息（认证标识）</li>
-          <li><span class="step-num">2</span> 选择合适的套餐（Lite / Pro / Deep）</li>
-          <li><span class="step-num">3</span> 确认「需要买家提供」的材料内容</li>
-          <li><span class="step-num">4</span> 点击「一键购买」下单并付款</li>
-          <li><span class="step-num">5</span> 或点击「咨询卖家」先聊后买</li>
-        </ul>
-      </div>
-    </div>
-    <div class="feature reverse">
-      <div class="feature-screenshot">
-        <img src="images/06-product-detail-scroll.png" alt="服务详情页 · 评论" />
-        <div class="caption">常见问题 &amp; 评论</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">详情内容</div>
-        <div class="feature-title">常见问题 · 案例 · 评论</div>
-        <div class="feature-text">向下滚动可查看卖家设置的 FAQ、案例展示图和买家评论，帮助做出购买决策。</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 在详情页向下滑动</li>
-          <li><span class="step-num">2</span> 展开「常见问题」查看 Q&amp;A</li>
-          <li><span class="step-num">3</span> 查看卖家上传的案例展示</li>
-          <li><span class="step-num">4</span> 浏览历史买家评价</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── AI 助手 ── -->
-  <section class="section anchor" id="ai">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 03</div>
-      <h2 class="section-title">AI 助手 · 看看</h2>
-      <p class="section-desc">基于大语言模型的智能对话助手，可回答服务咨询、旅游规划、生活建议等各类问题，支持图片和语音输入，历史会话随时可查。</p>
-    </div>
-    <div class="gallery" style="margin-bottom:32px">
-      <div class="gallery-item">
-        <img src="images/02-ai-assistant-empty.png" alt="AI 助手空状态" />
-        <div class="cap">新会话 · 空状态</div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/20-ai-session-list.png" alt="会话列表" />
-        <div class="cap">历史会话列表</div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/21-ai-chat-conversation.png" alt="AI 对话" />
-        <div class="cap">对话中（含回复）</div>
-      </div>
-    </div>
-    <div class="feature-body">
-      <div class="feature-tag">AI 功能</div>
-      <div class="feature-title">如何使用 AI 助手</div>
-      <ul class="feature-steps">
-        <li><span class="step-num">1</span> 点击底部导航「看看」标签进入 AI 助手</li>
-        <li><span class="step-num">2</span> 直接在底部输入框输入问题，点击发送</li>
-        <li><span class="step-num">3</span> 可点击📷图标上传图片辅助提问</li>
-        <li><span class="step-num">4</span> 点击🎤图标使用语音输入</li>
-        <li><span class="step-num">5</span> 点击左上角「≡」展开历史会话列表</li>
-        <li><span class="step-num">6</span> 点击「新建聊天」开启独立会话，每个会话独立存储</li>
-      </ul>
-      <div class="highlight-box">
-        <strong>匹配功能：</strong> 右上角「匹配」按钮可根据 AI 对话内容智能推荐相关卖家服务，实现 AI 对话 → 服务发现的无缝衔接。
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 聊聊 ── -->
-  <section class="section anchor" id="chat">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 04</div>
-      <h2 class="section-title">聊聊 · 消息中心</h2>
-      <p class="section-desc">买卖双方的即时通讯入口，每个会话关联具体订单，支持发送图片，并集成系统通知中心。</p>
-    </div>
-    <div class="gallery" style="margin-bottom:32px">
-      <div class="gallery-item">
-        <img src="images/07-chat-list.png" alt="聊天列表" />
-        <div class="cap">聊天列表</div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/23-chat-detail.png" alt="聊天详情" />
-        <div class="cap">会话详情 · 关联订单</div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/24-notifications.png" alt="通知中心" />
-        <div class="cap">通知中心</div>
-      </div>
-    </div>
-    <div class="feature-body">
-      <div class="feature-tag">消息功能</div>
-      <div class="feature-title">聊天 &amp; 通知使用说明</div>
-      <ul class="feature-steps">
-        <li><span class="step-num">1</span> 点击底部「聊聊」标签查看所有会话</li>
-        <li><span class="step-num">2</span> 点击卖家头像/名称进入一对一聊天</li>
-        <li><span class="step-num">3</span> 聊天页上方显示关联商品卡片和订单状态</li>
-        <li><span class="step-num">4</span> 点击「通知中心」查看系统消息（订单变更、评价邀请等）</li>
-        <li><span class="step-num">5</span> 右上角「买家消息」筛选器可快速筛选买家侧消息</li>
-      </ul>
-      <div class="highlight-box">
-        <strong>通知分类：</strong> 通知中心分为「全部 / 订单 / 系统 / 售后 / 消息」五个标签，订单状态变更实时推送，不会遗漏重要节点。
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 订单 ── -->
-  <section class="section anchor" id="orders">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 05</div>
-      <h2 class="section-title">我的订单</h2>
-      <p class="section-desc">买家订单管理中心，按状态分类展示所有订单，支持查看详情、取消、支付、确认收货等操作。</p>
-    </div>
-    <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/09-order-list.png" alt="订单列表" />
-        <div class="caption">订单列表</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">订单管理</div>
-        <div class="feature-title">订单列表 · 状态分类</div>
-        <div class="feature-text">订单按状态分为 8 个标签，方便快速筛选。每张订单卡片显示商品缩略图、套餐名、价格、下单时间及可用操作按钮。</div>
         <div class="tags">
-          <span class="tag">全部</span>
-          <span class="tag blue">待付款</span>
-          <span class="tag">待提交</span>
-          <span class="tag">待接单</span>
-          <span class="tag">待交付</span>
-          <span class="tag">待收货</span>
-          <span class="tag green">已完成</span>
-          <span class="tag orange">售后</span>
+          <span class="tag">核心入口</span>
+          <span class="tag green">所有用户可见</span>
         </div>
-        <ul class="feature-steps" style="margin-top:14px">
-          <li><span class="step-num">1</span> 进入「我的」→「我的订单」或点击「全部」</li>
-          <li><span class="step-num">2</span> 切换顶部标签筛选订单状态</li>
-          <li><span class="step-num">3</span> 「待付款」订单点击「去支付」完成付款</li>
-          <li><span class="step-num">4</span> 点击「查看详情」查看完整订单信息</li>
+        <div class="feature-title">商品瀑布流浏览</div>
+        <div class="feature-desc">首页以双列瀑布流展示商品卡片，每张卡片包含商品封面图、评分、标题和价格（双币种显示：美元 + 人民币折算）。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>点击底部导航栏「逛逛」进入浏览主界面</li>
+          <li><span class="step-num">2</span>上下滑动浏览所有在售服务</li>
+          <li><span class="step-num">3</span>点击顶部搜索栏可进入关键词搜索</li>
+          <li><span class="step-num">4</span>点击任意商品卡片进入商品详情页</li>
         </ul>
+        <div class="highlight">💡 价格以美元结算，页面同时显示当前汇率折算的人民币参考价，方便国内用户快速判断。</div>
       </div>
+    </div>
+  </div>
+
+  <!-- ══ 2. 搜索服务 ══ -->
+  <div class="section" id="search">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>买家 · 02</div>
+      <div class="section-title">搜索服务</div>
+      <div class="section-desc">通过关键词快速找到所需服务，支持按服务名称、类别进行检索。</div>
     </div>
     <div class="feature reverse">
       <div class="feature-screenshot">
-        <img src="images/10-order-detail.png" alt="订单详情" />
-        <div class="caption">订单详情页</div>
+        <img src="images/s26-search.png" alt="搜索页面" />
       </div>
       <div class="feature-body">
-        <div class="feature-tag">订单详情</div>
-        <div class="feature-title">订单详情页内容</div>
-        <div class="feature-text">详情页展示完整的订单信息，包括商品信息、订单编号、下单时间、买家材料、价格明细，以及订单关联操作。</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 商品信息：封面图、套餐名、单价、数量</li>
-          <li><span class="step-num">2</span> 订单信息：唯一订单编号（用于客服追踪）</li>
-          <li><span class="step-num">3</span> 材料信息：买家已提交的交付材料</li>
-          <li><span class="step-num">4</span> 价格明细：商品总价、折扣（如有）、实付金额</li>
-          <li><span class="step-num">5</span> 底部操作按钮：查看订单 / 删除订单</li>
+        <div class="tags">
+          <span class="tag">搜索</span>
+          <span class="tag green">快速找服务</span>
+        </div>
+        <div class="feature-title">关键词搜索</div>
+        <div class="feature-desc">点击首页顶部的搜索框进入搜索页，输入关键词即可过滤匹配的服务商品。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>在「逛逛」页点击顶部「搜索服务」输入框</li>
+          <li><span class="step-num">2</span>输入关键词（如"装机"、"设计"等）</li>
+          <li><span class="step-num">3</span>浏览搜索结果，点击目标商品进入详情</li>
         </ul>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ── 个人主页 ── -->
-  <section class="section anchor" id="profile">
+  <!-- ══ 3. 商品详情 ══ -->
+  <div class="section" id="product">
     <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 06</div>
-      <h2 class="section-title">个人主页 · 我的</h2>
-      <p class="section-desc">买家个人中心，整合订单快捷入口、收藏、钱包，以及一键切换卖家模式的入口。</p>
+      <div class="section-label"><span class="dot"></span>买家 · 03</div>
+      <div class="section-title">商品详情页</div>
+      <div class="section-desc">展示服务的完整信息，包括封面、描述、价格、卖家信息，买家可直接下单或联系卖家咨询。</div>
     </div>
     <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/08-profile.png" alt="个人主页" />
-        <div class="caption">买家个人中心</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">个人中心</div>
-        <div class="feature-title">「我的」页面结构</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> <strong>顶部卡片：</strong> 头像、昵称、在线状态</li>
-          <li><span class="step-num">2</span> <strong>切换卖家模式：</strong> 点击按钮切换为卖家视图</li>
-          <li><span class="step-num">3</span> <strong>我的订单：</strong> 快速入口分类（待付款 / 咨询中 / 已完成 / 售后）</li>
-          <li><span class="step-num">4</span> <strong>我的多看 → 收藏：</strong> 管理收藏的服务和卖家</li>
-          <li><span class="step-num">5</span> <strong>我的钱包：</strong> 查看余额、提现记录</li>
-          <li><span class="step-num">6</span> <strong>设置：</strong> 账户设置入口（页面底部）</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 收藏 ── -->
-  <section class="section anchor" id="favorites">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 07</div>
-      <h2 class="section-title">收藏</h2>
-      <p class="section-desc">收藏感兴趣的服务和卖家，方便后续快速找回。</p>
-    </div>
-    <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/11-favorites.png" alt="收藏页" />
-        <div class="caption">我的收藏</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">收藏</div>
-        <div class="feature-title">收藏功能说明</div>
-        <div class="feature-text">收藏分为「服务」和「卖家」两个标签，分别管理收藏的服务和关注的卖家主页。</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 在服务详情页点击右上角❤️图标即可收藏</li>
-          <li><span class="step-num">2</span> 在「我的」→「收藏」查看所有已收藏内容</li>
-          <li><span class="step-num">3</span> 切换「服务」/「卖家」标签分类查看</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 钱包 ── -->
-  <section class="section anchor" id="wallet">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 08</div>
-      <h2 class="section-title">钱包</h2>
-      <p class="section-desc">买家钱包，查看账户余额和资金明细，支持通过 Stripe 进行国际支付。</p>
-    </div>
-    <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/12-wallet.png" alt="钱包" />
-        <div class="caption">我的钱包</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">支付 &amp; 资金</div>
-        <div class="feature-title">钱包功能</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 进入「我的」→「钱包」</li>
-          <li><span class="step-num">2</span> 查看当前余额（USD）</li>
-          <li><span class="step-num">3</span> 查看充值/消费/提现历史记录</li>
-        </ul>
-        <div class="highlight-box">
-          <strong>支付方式：</strong> 平台使用 Stripe 进行国际支付，支持主流信用卡/借记卡，结算货币为 USD。
+      <div class="screenshots-grid">
+        <div class="feature-screenshot">
+          <img src="images/s03-product-detail.png" alt="商品详情顶部" />
+          <div class="cap">商品详情 · 顶部</div>
+        </div>
+        <div class="feature-screenshot">
+          <img src="images/s04-product-detail-bottom.png" alt="商品详情底部" />
+          <div class="cap">商品详情 · 底部操作区</div>
         </div>
       </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag">购买入口</span>
+          <span class="tag orange">需要登录</span>
+        </div>
+        <div class="feature-title">查看服务并下单</div>
+        <div class="feature-desc">商品详情页提供完整的服务描述、卖家资质、评价评分，底部固定操作栏可直接下单或联系卖家。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>在瀑布流或搜索结果中点击商品卡片</li>
+          <li><span class="step-num">2</span>浏览服务描述、价格和卖家信息</li>
+          <li><span class="step-num">3</span>点击底部「联系卖家」可进入聊天咨询</li>
+          <li><span class="step-num">4</span>点击「一键购买」直接跳转下单流程</li>
+        </ul>
+        <div class="highlight">💡 购买前建议先与卖家聊聊，确认需求后再付款，避免后续售后纠纷。</div>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ── 卖家主页 ── -->
-  <section class="section anchor" id="seller-home">
+  <!-- ══ 4. 聊聊 ══ -->
+  <div class="section" id="chat">
     <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 09</div>
-      <h2 class="section-title">卖家模式 · 主页</h2>
-      <p class="section-desc">切换卖家模式后，底部导航变为「数据 / 商品 / 消息 / 我的」，提供完整的卖家运营工具集。</p>
+      <div class="section-label"><span class="dot"></span>买家 · 04</div>
+      <div class="section-title">聊聊（买卖沟通）</div>
+      <div class="section-desc">买家与卖家的实时消息沟通中心，支持图片、文字发送，并可查看关联商品卡片。</div>
     </div>
     <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/13-seller-mode.png" alt="卖家主页" />
-        <div class="caption">卖家模式 · 我的</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">卖家功能</div>
-        <div class="feature-title">卖家主页概览</div>
-        <div class="feature-text">卖家「我的」页面集成收入看板、订单概览和常用功能快捷入口，一屏掌握店铺核心数据。</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> <strong>收入看板：</strong> 总收入 / 今日收入 / 待结算，点击「查看明细」</li>
-          <li><span class="step-num">2</span> <strong>订单概览：</strong> 全部 / 待处理 / 已完成 / 已取消 快速统计</li>
-          <li><span class="step-num">3</span> <strong>功能区：</strong> 钱包 / 收款账户 / 时间管理 / 自动回复</li>
-        </ul>
-        <div class="highlight-box">
-          <strong>切换方式：</strong> 在「我的」页面点击「切换到卖家模式」，再次点击「切换到买家模式」即可切回。
+      <div class="screenshots-grid">
+        <div class="feature-screenshot">
+          <img src="images/s22-chat-list.png" alt="聊天列表" />
+          <div class="cap">聊天列表</div>
+        </div>
+        <div class="feature-screenshot">
+          <img src="images/s27-chat-detail.png" alt="聊天详情" />
+          <div class="cap">聊天详情</div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ── 卖家商品 ── -->
-  <section class="section anchor" id="seller-products">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 10</div>
-      <h2 class="section-title">卖家商品管理</h2>
-      <p class="section-desc">管理已发布的服务商品，查看在售/下架状态，新建或编辑服务套餐。</p>
-    </div>
-    <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/14-seller-products.png" alt="卖家商品管理" />
-        <div class="caption">商品管理 · 在售/下架</div>
-      </div>
       <div class="feature-body">
-        <div class="feature-tag">商品管理</div>
-        <div class="feature-title">商品管理页面</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 卖家模式下点击底部「商品」标签</li>
-          <li><span class="step-num">2</span> 「在售」标签查看已上架商品</li>
-          <li><span class="step-num">3</span> 「下架」标签查看已下架商品</li>
-          <li><span class="step-num">4</span> 点击商品卡片进行编辑</li>
+        <div class="tags">
+          <span class="tag">即时通讯</span>
+          <span class="tag green">图文消息</span>
+          <span class="tag purple">商品卡片关联</span>
+        </div>
+        <div class="feature-title">与卖家实时沟通</div>
+        <div class="feature-desc">点击底部导航「聊聊」进入消息中心，可查看所有与卖家的历史对话，聊天页内置商品卡片方便对照沟通。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>点击底部「聊聊」标签进入聊天列表</li>
+          <li><span class="step-num">2</span>点击任意会话进入聊天详情</li>
+          <li><span class="step-num">3</span>在底部输入框输入文字或发送图片</li>
+          <li><span class="step-num">4</span>聊天顶部显示关联商品卡片，点击可跳转详情</li>
         </ul>
+        <div class="highlight">🔔 通知中心也在「聊聊」页顶部，包含系统、订单、评价等重要通知。</div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ── 卖家工具 ── -->
-  <section class="section anchor" id="seller-tools">
+  <!-- ══ 5. 我的订单 ══ -->
+  <div class="section" id="orders">
     <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 11</div>
-      <h2 class="section-title">卖家工具</h2>
-      <p class="section-desc">时间管理（在线状态）、自动回复设置、收款账户配置，让卖家高效运营店铺。</p>
+      <div class="section-label"><span class="dot"></span>买家 · 05</div>
+      <div class="section-title">我的订单</div>
+      <div class="section-desc">买家的订单管理中心，支持按状态筛选，可查看订单详情、跟踪交付进度、发起售后。</div>
     </div>
-    <div class="gallery" style="margin-bottom:32px">
-      <div class="gallery-item">
-        <img src="images/17-seller-time-management.png" alt="时间管理" />
-        <div class="cap">在线状态管理</div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/18-seller-auto-reply.png" alt="自动回复" />
-        <div class="cap">自动回复设置</div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/19-seller-payment-account.png" alt="收款账户" />
-        <div class="cap">收款账户 (Stripe)</div>
-      </div>
-    </div>
-    <div class="feature-body">
-      <div class="feature-tag">卖家工具</div>
-      <div class="feature-title">三大运营工具说明</div>
-      <ul class="feature-steps">
-        <li><span class="step-num">1</span> <strong>时间管理：</strong> 开关在线状态。在线时买家可发消息；关闭则提示卖家暂时离开，适合休假/下班时间使用</li>
-        <li><span class="step-num">2</span> <strong>自动回复：</strong> 设置自动回复内容，当买家发消息时系统自动发送预设文字，提升响应率</li>
-        <li><span class="step-num">3</span> <strong>收款账户：</strong> 绑定 Stripe Connect 收款账户，设置后订单收款将自动结算到绑定账户</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ── 卖家数据 ── -->
-  <section class="section anchor" id="seller-analytics">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 12</div>
-      <h2 class="section-title">数据统计</h2>
-      <p class="section-desc">卖家专属的经营数据看板，追踪店铺流量和成交数据。</p>
-    </div>
-    <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/15-seller-analytics.png" alt="数据统计" />
-        <div class="caption">卖家数据看板</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">数据分析</div>
-        <div class="feature-title">数据看板功能</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 卖家模式下点击底部「数据」标签</li>
-          <li><span class="step-num">2</span> 查看店铺访问量、订单数、成交额趋势</li>
-          <li><span class="step-num">3</span> 支持按时间范围筛选数据</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── AI 助手 (卖家消息) ── -->
-  <section class="section anchor" id="seller-messages-section">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 13</div>
-      <h2 class="section-title">卖家消息中心</h2>
-      <p class="section-desc">卖家视角的聊天列表，统一管理与所有买家的对话，快速响应咨询和订单问题。</p>
-    </div>
-    <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/16-seller-messages.png" alt="卖家消息" />
-        <div class="caption">卖家聊天列表</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">消息管理</div>
-        <div class="feature-title">卖家消息功能</div>
-        <ul class="feature-steps">
-          <li><span class="step-num">1</span> 卖家模式下点击底部「消息」标签</li>
-          <li><span class="step-num">2</span> 查看所有买家发来的消息列表</li>
-          <li><span class="step-num">3</span> 点击对话进入详情，查看关联订单并回复</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── AI 助手对话示例 ── -->
-  <section class="section anchor" id="ai-showcase">
-    <div class="section-header">
-      <div class="section-label"><span class="dot"></span> 功能 14</div>
-      <h2 class="section-title">AI 助手 · 对话示例</h2>
-      <p class="section-desc">展示 AI 助手的实际对话能力，帮助用户了解可以向 AI 提什么样的问题。</p>
-    </div>
-    <div class="feature">
-      <div class="feature-screenshot">
-        <img src="images/21-ai-chat-conversation.png" alt="AI 对话示例" />
-        <div class="caption">AI 助手实际对话截图</div>
-      </div>
-      <div class="feature-body">
-        <div class="feature-tag">AI 能力展示</div>
-        <div class="feature-title">AI 助手实际对话</div>
-        <div class="feature-text">上图展示了用户询问「越南旅游导游和美食推荐，预算3000元」的真实回复，AI 提供了结构化的导游推荐、美食清单和预算分配方案。</div>
-        <div class="highlight-box">
-          <strong>适用场景：</strong> 出行规划、服务咨询、预算估算、方案建议、知识问答……AI 助手覆盖日常生活和消费决策各类场景，回复结构清晰，可直接用于行动参考。
+    <div class="feature reverse">
+      <div class="screenshots-grid">
+        <div class="feature-screenshot">
+          <img src="images/s10-order-list.png" alt="订单列表" />
+          <div class="cap">订单列表</div>
+        </div>
+        <div class="feature-screenshot">
+          <img src="images/s11-order-detail.png" alt="订单详情" />
+          <div class="cap">订单详情</div>
         </div>
       </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag">订单管理</span>
+          <span class="tag orange">登录后可用</span>
+        </div>
+        <div class="feature-title">全流程订单跟踪</div>
+        <div class="feature-desc">订单列表按「待付款 / 咨询中 / 已完成 / 售后」分类展示，点击订单可查看完整详情、操作记录和当前状态。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>进入「我的」页，点击「全部」查看所有订单</li>
+          <li><span class="step-num">2</span>按顶部标签切换订单状态筛选</li>
+          <li><span class="step-num">3</span>点击订单卡片查看详细信息</li>
+          <li><span class="step-num">4</span>在详情页可确认收货、发起售后等操作</li>
+        </ul>
+        <div class="highlight">💡 订单状态包括：待付款 → 等待开始 → 等待交付 → 交付确认 → 评价 → 完成，全程可追踪。</div>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <footer>
-    <p>多少看看 (DSKK) · 交互操作手册 v1.0 · 截图来源：Zeabur 测试环境 · 生成日期：2026年5月22日</p>
-  </footer>
+  <!-- ══ 6. 收藏夹 ══ -->
+  <div class="section" id="favorites">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>买家 · 06</div>
+      <div class="section-title">收藏夹</div>
+      <div class="section-desc">保存感兴趣的服务商品，方便日后快速找到并下单。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-screenshot">
+        <img src="images/s13-favorites.png" alt="收藏夹" />
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag">收藏</span>
+          <span class="tag green">快速复购</span>
+        </div>
+        <div class="feature-title">收藏喜欢的服务</div>
+        <div class="feature-desc">在商品详情页点击收藏，即可将服务加入收藏夹。在「我的 → 收藏」中统一管理已收藏内容。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>在商品详情页点击收藏按钮</li>
+          <li><span class="step-num">2</span>进入「我的」→「收藏」查看已收藏列表</li>
+          <li><span class="step-num">3</span>点击收藏商品快速进入详情页下单</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-</main>
+  <!-- ══ 7. 我的钱包 ══ -->
+  <div class="section" id="wallet">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>买家 · 07</div>
+      <div class="section-title">我的钱包</div>
+      <div class="section-desc">查看账户余额、待结算金额、总收入，管理资金提现。</div>
+    </div>
+    <div class="feature reverse">
+      <div class="feature-screenshot">
+        <img src="images/s14-wallet.png" alt="我的钱包" />
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag">资金管理</span>
+          <span class="tag orange">实名认证</span>
+        </div>
+        <div class="feature-title">账户余额与提现</div>
+        <div class="feature-desc">钱包页展示账户余额、待结算金额和总收入三个核心指标，卖家收款后可在此发起提现申请。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>进入「我的」→「钱包」</li>
+          <li><span class="step-num">2</span>查看账户余额、待结算金额、总收入</li>
+          <li><span class="step-num">3</span>点击「提现」按钮发起提现（需完成认证）</li>
+          <li><span class="step-num">4</span>下方显示所有交易流水记录</li>
+        </ul>
+        <div class="highlight">💡 平台使用 Stripe 处理国际支付，以美元结算，提现需绑定收款账户。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 8. 个人主页 ══ -->
+  <div class="section" id="profile">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>买家 · 08</div>
+      <div class="section-title">个人主页（我的）</div>
+      <div class="section-desc">用户中心，展示个人信息、订单快捷入口、多看工具栏和账户设置。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-screenshot">
+        <img src="images/s12-profile-loaded.png" alt="个人主页" />
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag">个人中心</span>
+          <span class="tag purple">买卖双模式</span>
+        </div>
+        <div class="feature-title">用户中心总览</div>
+        <div class="feature-desc">「我的」页集成了头像、在线状态、订单快捷入口、收藏、钱包等全部功能入口，同时提供「切换到卖家模式」按钮，一键切换身份。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>点击底部「我的」标签进入个人中心</li>
+          <li><span class="step-num">2</span>顶部显示头像、昵称和在线状态</li>
+          <li><span class="step-num">3</span>「我的订单」区展示待付款、咨询中等快捷分类</li>
+          <li><span class="step-num">4</span>向下滚动可访问收藏、钱包、设置</li>
+          <li><span class="step-num">5</span>点击「切换到卖家模式」可进入卖家端</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 9. 通知中心 ══ -->
+  <div class="section" id="notifications">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>买家 · 09</div>
+      <div class="section-title">通知中心</div>
+      <div class="section-desc">汇聚系统通知、订单变更、评价邀请等所有重要消息，按类型分 Tab 展示。</div>
+    </div>
+    <div class="feature reverse">
+      <div class="feature-screenshot">
+        <img src="images/s23-notification-center.png" alt="通知中心" />
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag">通知</span>
+          <span class="tag green">多类型分类</span>
+        </div>
+        <div class="feature-title">所有重要通知集中管理</div>
+        <div class="feature-desc">通知中心位于「聊聊」页聊天列表顶部，点击「通知中心」进入，按「全部 / 订单 / 系统 / 评价 / 活动」五个 Tab 分类查看。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>点击底部「聊聊」标签</li>
+          <li><span class="step-num">2</span>点击列表顶部「通知中心」入口</li>
+          <li><span class="step-num">3</span>切换 Tab 查看不同类型通知</li>
+          <li><span class="step-num">4</span>点击通知可跳转到对应订单或页面</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 10. AI 助手 ══ -->
+  <div class="section" id="ai">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>AI 功能 · 10</div>
+      <div class="section-title">AI 助手</div>
+      <div class="section-desc">内置 AI 对话助手，可多轮对话咨询、查询服务建议，支持图片输入和语音输入。</div>
+    </div>
+    <div class="feature">
+      <div class="screenshots-grid">
+        <div class="feature-screenshot">
+          <img src="images/s24-ai-session-list.png" alt="AI会话列表" />
+          <div class="cap">AI 会话列表</div>
+        </div>
+        <div class="feature-screenshot">
+          <img src="images/s25-ai-chat.png" alt="AI聊天" />
+          <div class="cap">AI 对话界面</div>
+        </div>
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag purple">AI 驱动</span>
+          <span class="tag">多会话管理</span>
+          <span class="tag green">图片 + 语音</span>
+        </div>
+        <div class="feature-title">智能 AI 对话助手</div>
+        <div class="feature-desc">底部「看看」标签即为 AI 助手入口。支持创建多个独立会话，每个会话保存完整上下文，支持图片上传和语音输入，适合复杂需求的咨询场景。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>点击底部「看看」标签进入 AI 助手主界面</li>
+          <li><span class="step-num">2</span>点击左上角「≡」查看历史会话列表</li>
+          <li><span class="step-num">3</span>点击「新建聊天」开始新的对话</li>
+          <li><span class="step-num">4</span>在底部输入框输入问题，或点击📷发送图片</li>
+          <li><span class="step-num">5</span>点击🎤进行语音输入（自动转文字）</li>
+        </ul>
+        <div class="highlight">💡 AI 助手支持多模态输入，可以把截图、商品图片等发给 AI 分析，获取更精准的建议。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 11. 卖家主页 ══ -->
+  <div class="section" id="seller-home">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>卖家 · 11</div>
+      <div class="section-title">卖家主页（数据总览）</div>
+      <div class="section-desc">切换至卖家模式后的主页，展示收入概览、订单状态和功能快捷入口。</div>
+    </div>
+    <div class="feature reverse">
+      <div class="feature-screenshot">
+        <img src="images/s15-seller-home.png" alt="卖家主页" />
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag purple">卖家专属</span>
+          <span class="tag">收入总览</span>
+        </div>
+        <div class="feature-title">卖家端主页</div>
+        <div class="feature-desc">在「我的」页点击「切换到卖家模式」进入卖家端。卖家主页展示：总收入、今日收入、待结算、订单状态统计（全部 / 待处理 / 已完成 / 已取消），以及功能快捷区（钱包、收款账户、时间管理、自动回复）。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>在买家「我的」页点击「切换到卖家模式」</li>
+          <li><span class="step-num">2</span>卖家主页默认显示在「我的」Tab</li>
+          <li><span class="step-num">3</span>查看收入概览（总收入、今日、待结算）</li>
+          <li><span class="step-num">4</span>查看订单状态分布（全部 / 待处理 / 已完成）</li>
+          <li><span class="step-num">5</span>点击底部功能图标快速进入对应工具</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 12. 商品管理 ══ -->
+  <div class="section" id="seller-products">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>卖家 · 12</div>
+      <div class="section-title">商品管理</div>
+      <div class="section-desc">卖家管理自己上架的所有服务商品，支持查看在售和下架状态。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-screenshot">
+        <img src="images/s16-seller-products.png" alt="商品管理" />
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag purple">卖家专属</span>
+          <span class="tag green">商品上下架</span>
+        </div>
+        <div class="feature-title">管理我的在售服务</div>
+        <div class="feature-desc">卖家模式底部导航「商品」Tab 展示所有自己发布的服务，分「在售」和「下架」两个状态视图，可随时管理上下架状态。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>进入卖家模式，点击底部「商品」标签</li>
+          <li><span class="step-num">2</span>默认显示「在售」商品列表</li>
+          <li><span class="step-num">3</span>切换到「下架」查看已下架服务</li>
+          <li><span class="step-num">4</span>点击商品可编辑或修改上下架状态</li>
+          <li><span class="step-num">5</span>点击右上角 + 发布新服务</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 13. 数据统计 ══ -->
+  <div class="section" id="seller-analytics">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>卖家 · 13</div>
+      <div class="section-title">数据统计</div>
+      <div class="section-desc">卖家经营数据大盘，包括热度值、回复率、完成率、好评率等核心指标，以及盈利和订单数统计。</div>
+    </div>
+    <div class="feature reverse">
+      <div class="feature-screenshot">
+        <img src="images/s17-seller-analytics.png" alt="数据统计" />
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag purple">卖家专属</span>
+          <span class="tag orange">经营指标</span>
+        </div>
+        <div class="feature-title">卖家经营数据总览</div>
+        <div class="feature-desc">数据页展示卖家等级成长进度（升到下一级所需条件）和四大核心指标：热度值、回复率、完成率、好评率，下方显示总盈利、本月盈利、总订单数和活跃订单数。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>进入卖家模式，点击底部「数据」标签</li>
+          <li><span class="step-num">2</span>查看四大核心指标（热度/回复/完成/好评率）</li>
+          <li><span class="step-num">3</span>查看升级进度条和所需完成条件</li>
+          <li><span class="step-num">4</span>向下滚动查看盈利和订单数详细数据</li>
+        </ul>
+        <div class="highlight">📈 保持高回复率和完成率是维持卖家评分、获得更多曝光的关键。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 14. 卖家消息 ══ -->
+  <div class="section" id="seller-messages">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>卖家 · 14</div>
+      <div class="section-title">卖家消息</div>
+      <div class="section-desc">卖家专属的消息中心，集中管理所有买家发来的询单和沟通消息。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-screenshot">
+        <img src="images/s18-seller-messages.png" alt="卖家消息" />
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag purple">卖家专属</span>
+          <span class="tag">买家消息</span>
+        </div>
+        <div class="feature-title">统一管理买家消息</div>
+        <div class="feature-desc">卖家模式下「消息」Tab 集中展示所有买家发来的消息，卖家可以在此统一回复，右上角「买家消息」按钮可快速切换查看模式。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>进入卖家模式，点击底部「消息」标签</li>
+          <li><span class="step-num">2</span>浏览所有买家发来的消息列表</li>
+          <li><span class="step-num">3</span>点击某条消息进入对话详情，及时回复</li>
+          <li><span class="step-num">4</span>设置自动回复可减少手动回复负担（见卖家工具）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 15. 卖家工具 ══ -->
+  <div class="section" id="seller-tools">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>卖家 · 15</div>
+      <div class="section-title">卖家工具</div>
+      <div class="section-desc">三大辅助工具：时间管理（在线状态）、自动回复设置、收款账户配置，帮助卖家高效运营。</div>
+    </div>
+
+    <div class="feature">
+      <div class="screenshots-grid">
+        <div class="feature-screenshot">
+          <img src="images/s19-seller-time-mgmt.png" alt="时间管理" />
+          <div class="cap">时间管理</div>
+        </div>
+        <div class="feature-screenshot">
+          <img src="images/s20-seller-auto-reply.png" alt="自动回复" />
+          <div class="cap">自动回复设置</div>
+        </div>
+        <div class="feature-screenshot">
+          <img src="images/s21-seller-payment-account.png" alt="收款账户" />
+          <div class="cap">收款账户</div>
+        </div>
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag purple">卖家专属</span>
+          <span class="tag green">运营效率</span>
+        </div>
+        <div class="feature-title">三大卖家辅助工具</div>
+
+        <div class="feature-title" style="font-size:15px;margin-top:8px;margin-bottom:6px;">⏰ 时间管理</div>
+        <div class="feature-desc" style="margin-bottom:10px;">控制在线/离线状态。在线时买家可发送消息并收到通知，有助于提高响应率评分。</div>
+        <ul class="steps" style="margin-bottom:20px;">
+          <li><span class="step-num">1</span>卖家主页 → 点击「时间管理」图标</li>
+          <li><span class="step-num">2</span>切换「当前状态：在线/离线」</li>
+        </ul>
+
+        <div class="feature-title" style="font-size:15px;margin-bottom:6px;">🤖 自动回复</div>
+        <div class="feature-desc" style="margin-bottom:10px;">配置当无法及时回复时自动发送的问候语，避免买家等待过久导致流失。</div>
+        <ul class="steps" style="margin-bottom:20px;">
+          <li><span class="step-num">1</span>卖家主页 → 点击「自动回复」图标</li>
+          <li><span class="step-num">2</span>开启自动回复开关</li>
+          <li><span class="step-num">3</span>编辑自动回复内容并保存</li>
+        </ul>
+
+        <div class="feature-title" style="font-size:15px;margin-bottom:6px;">💳 收款账户</div>
+        <div class="feature-desc" style="margin-bottom:10px;">绑定 Stripe Connect 收款账户，用于接收买家付款并发起提现。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>卖家主页 → 点击「收款账户」图标</li>
+          <li><span class="step-num">2</span>按引导完成 Stripe Connect 认证</li>
+          <li><span class="step-num">3</span>认证完成后即可接受买家付款</li>
+        </ul>
+        <div class="highlight">💡 未完成收款账户配置的卖家无法上架商品接受付款，建议注册后第一时间完成设置。</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
 
 <script>
-  function setActive(el) {
-    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-    el.classList.add('active');
-  }
   // Scrollspy
-  const sections = document.querySelectorAll('.anchor');
-  const sidebarLinks = document.querySelectorAll('.sidebar-item');
-  const observer = new IntersectionObserver((entries) => {
+  const items = document.querySelectorAll('.sidebar-item');
+  const sections = document.querySelectorAll('.section, .hero');
+  const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         const id = e.target.id;
-        sidebarLinks.forEach(l => {
-          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+        items.forEach(i => {
+          i.classList.toggle('active', i.getAttribute('href') === '#' + id);
         });
       }
     });
-  }, { rootMargin: '-20% 0px -70% 0px' });
-  sections.forEach(s => observer.observe(s));
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => obs.observe(s));
+
+  // Smooth scroll
+  items.forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 </script>
 </body>
 </html>
