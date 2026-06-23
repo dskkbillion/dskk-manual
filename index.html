@@ -157,6 +157,12 @@
   <a class="sidebar-item" href="#seller-analytics"><span class="icon">📊</span>数据统计</a>
   <a class="sidebar-item" href="#seller-messages"><span class="icon">📨</span>卖家消息</a>
   <a class="sidebar-item" href="#seller-tools"><span class="icon">⚙️</span>卖家工具</a>
+
+  <div class="sidebar-section">平台特性</div>
+  <a class="sidebar-item" href="#i18n"><span class="icon">🌐</span>多语言支持</a>
+  <a class="sidebar-item" href="#currency"><span class="icon">💱</span>多货币双显示</a>
+  <a class="sidebar-item" href="#payment"><span class="icon">💳</span>国际支付</a>
+  <a class="sidebar-item" href="#login"><span class="icon">🔐</span>多端登录</a>
 </nav>
 
 <!-- ══ MAIN ══ -->
@@ -166,11 +172,12 @@
   <div class="hero">
     <div class="badge">📱 APP 交互手册</div>
     <h1>多少看看<br>功能操作指南</h1>
-    <p>面向宣发、运营、新用户的完整功能说明。涵盖买家全流程、AI 助手、卖家管理台共 15 个功能模块，所有截图均来自 Staging 真实环境。</p>
+    <p>面向宣发、运营、新用户的完整功能说明。涵盖买家全流程、AI 助手、卖家管理台共 15 个功能模块，支持 5 种语言、Stripe 国际支付，所有截图均来自 Staging 真实环境。</p>
     <div class="hero-meta">
       <span>📅 2026-06-23 更新</span>
-      <span>📸 27 张实机截图</span>
+      <span>📸 38 张实机截图</span>
       <span>🧩 15 个功能模块</span>
+      <span>🌐 5 种语言</span>
       <span>📱 iOS 端演示</span>
     </div>
   </div>
@@ -668,6 +675,116 @@
           <li><span class="step-num">3</span>认证完成后即可接受买家付款</li>
         </ul>
         <div class="highlight">💡 未完成收款账户配置的卖家无法上架商品接受付款，建议注册后第一时间完成设置。</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══ 16. 多语言支持 ══ -->
+  <div class="section" id="i18n">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>平台特性 · 16</div>
+      <div class="section-title">多语言支持</div>
+      <div class="section-desc">APP 界面支持 5 种语言，自动跟随手机系统语言，无需手动切换。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag green">自动适配</span>
+          <span class="tag">5 种语言</span>
+        </div>
+        <div class="feature-title">界面语言自动跟随系统</div>
+        <div class="feature-desc">多少看看支持以下 5 种界面语言，APP 启动时自动检测手机系统语言并切换对应语言界面，无需用户手动设置：</div>
+        <ul class="steps">
+          <li><span class="step-num">🇨🇳</span>简体中文（默认语言）</li>
+          <li><span class="step-num">🇺🇸</span>English（英文）</li>
+          <li><span class="step-num">🇯🇵</span>日本語（日文）</li>
+          <li><span class="step-num">🇰🇷</span>한국어（韩文）</li>
+          <li><span class="step-num">🇻🇳</span>Tiếng Việt（越南文）</li>
+        </ul>
+        <div class="highlight">💡 若手机系统语言不在支持列表中，APP 默认显示简体中文。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 17. 多货币双显示 ══ -->
+  <div class="section" id="currency">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>平台特性 · 17</div>
+      <div class="section-title">多货币双显示</div>
+      <div class="section-desc">商品价格以美元（USD）结算，同时自动折算并显示人民币参考价，方便国内用户快速判断。</div>
+    </div>
+    <div class="feature reverse">
+      <div class="feature-screenshot">
+        <img src="images/new-search-empty.png" alt="双币种价格展示" />
+      </div>
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag">美元结算</span>
+          <span class="tag green">实时汇率折算</span>
+          <span class="tag purple">自动双显</span>
+        </div>
+        <div class="feature-title">美元 + 人民币实时双显</div>
+        <div class="feature-desc">平台以美元（USD）作为统一结算货币，商品卡片和详情页同时显示美元价格（主价格）与人民币折算参考价（副价格），汇率每小时自动更新，无需手动换算。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span>商品卡片显示：主价格 $55.99 + 折算价 ≈ ¥379.53</li>
+          <li><span class="step-num">2</span>汇率来源自国际外汇 API，每小时自动刷新</li>
+          <li><span class="step-num">3</span>折算价为参考价，实际结算以美元为准</li>
+        </ul>
+        <div class="highlight">💡 折算价格仅供参考，最终以 Stripe 美元结算账单为准，不会因汇率波动产生额外费用。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 18. 国际支付 ══ -->
+  <div class="section" id="payment">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>平台特性 · 18</div>
+      <div class="section-title">国际支付（Stripe）</div>
+      <div class="section-desc">平台使用 Stripe 处理国际支付，买家可用信用卡/借记卡付款，卖家通过 Stripe Connect 收款并提现。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag purple">Stripe 驱动</span>
+          <span class="tag green">信用卡支付</span>
+          <span class="tag orange">卖家收款</span>
+        </div>
+        <div class="feature-title">买家付款 · 卖家收款全链路</div>
+        <div class="feature-desc">多少看看采用 Stripe 国际支付体系，支持 Visa、Mastercard 等主流信用卡/借记卡支付，卖家通过 Stripe Connect 绑定收款账户后即可接受买家付款并发起提现。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span><strong>买家付款</strong>：点击「Pay Now」进入 Stripe 安全支付页，输入卡号完成付款</li>
+          <li><span class="step-num">2</span><strong>资金托管</strong>：付款后资金由 Stripe 托管，订单完成后自动结算到卖家账户</li>
+          <li><span class="step-num">3</span><strong>卖家收款</strong>：在「卖家工具 → 收款账户」完成 Stripe Connect 认证</li>
+          <li><span class="step-num">4</span><strong>卖家提现</strong>：进入「钱包」查看余额，点击「提现」发起到绑定银行账户</li>
+        </ul>
+        <div class="highlight">🔒 所有支付数据由 Stripe 加密处理，平台不存储任何卡号或支付信息，符合 PCI DSS 安全标准。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 19. 多端登录 ══ -->
+  <div class="section" id="login">
+    <div class="section-header">
+      <div class="section-label"><span class="dot"></span>平台特性 · 19</div>
+      <div class="section-title">多端登录</div>
+      <div class="section-desc">支持手机号验证码登录和 Google 账号一键登录，快速注册无需记密码。</div>
+    </div>
+    <div class="feature reverse">
+      <div class="feature-body">
+        <div class="tags">
+          <span class="tag">手机号登录</span>
+          <span class="tag green">Google 一键登录</span>
+        </div>
+        <div class="feature-title">两种登录方式</div>
+        <div class="feature-desc">多少看看提供手机号验证码和 Google 账号两种登录方式，首次登录自动完成注册，无需单独填写注册表单。</div>
+        <ul class="steps">
+          <li><span class="step-num">1</span><strong>手机号登录</strong>：输入手机号 → 获取短信验证码 → 6 位数字一次登录/注册</li>
+          <li><span class="step-num">2</span><strong>Google 登录</strong>：点击「Google 登录」→ 选择 Google 账号 → 一键完成</li>
+          <li><span class="step-num">3</span>登录状态持久保存，重启 APP 无需重新登录</li>
+          <li><span class="step-num">4</span>退出登录：「我的」→「账号与安全」→「退出登录」</li>
+        </ul>
+        <div class="highlight">💡 登录即注册：首次使用手机号或 Google 账号登录时，系统自动创建账号，无需额外注册步骤。</div>
       </div>
     </div>
   </div>
